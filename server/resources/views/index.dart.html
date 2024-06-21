@@ -1,0 +1,38 @@
+<html dir="rtl">
+  <title>{{ title | default: 'Vania Example'}}</title>
+  <body>
+    <p>استفاده از  شرط</p>
+    {@ if isLoggedIn == true @}
+      <p> {{ username }}! عزیز خوش آمدید</p>
+    {@ elseif isGuest  @}
+      <p>شما مهمان هستید</p>
+    {@ else @}
+      <p>لطفا وارد شوید</p>
+    {@ endif @}
+
+    <p>استفاده از حلقه foor</p>
+    <table>
+    {@ for user in users @}
+      <tr>
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.roles | join: ', ' | default: 'none' }}</td>
+      </tr>
+    {@ endfor @}
+    </table>
+
+    <p>استفاده از Switch</p>
+    {@ switch userType @}
+      {@ case admin @}
+        <p>شما مدیر هستش.</p>
+      {@ endcase @}
+      {@ case user @}
+        <p>شما مدیر هستش</p>
+      {@ endcase @}
+    {@ endswitch @}
+
+    <p>استفاده از حلقه while</p>
+    <p>وارد کردن یک فایل جدید</p>
+    @include('while')
+  </body>
+</html>

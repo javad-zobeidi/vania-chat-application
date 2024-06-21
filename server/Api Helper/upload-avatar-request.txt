@@ -1,0 +1,5 @@
+curl -X PATCH http://127.0.0.1:8000/api/v1/user/avatar \
+    -H 'Content-Type: multipart/form-data' \
+    -H 'Accept: application/json' \
+    -H 'Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoie1wiaWRcIjoxLFwidHlwZVwiOlwicmVmcmVzaF90b2tlblwiLFwiaWF0XCI6MTcxODk2OTAyMyxcImV4cFwiOjE3MjE1NjEwMjN9IiwidHlwZSI6ImFjY2Vzc190b2tlbiIsImlkIjoxLCJpYXQiOjE3MTg5NzA5MTMsImV4cCI6MTcyMTU2MjkxM30.Oe070n-61gHmo60pOR9JUOfi8OsxzhtRnwqkC5pz5pQ' \
+    -d 'avatar=[$file.screenshot-2023-08-11-153301-png]'

@@ -1,0 +1,5 @@
+{
+    "status": "success",
+    "message": "The OTP has been sent",
+    "statusCode": 200
+}
