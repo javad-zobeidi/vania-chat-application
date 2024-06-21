@@ -8,6 +8,7 @@ Clone the project
 ```shell
 git clone https://github.com/javad-zobeidi/vania-chat-application.git
 ```
+Rename `.env.examplp` to `.env`
 
 Go to the server directory, Update  `MySql`, `Redis`, `Mail` Info in the .env file
 
