@@ -58,7 +58,6 @@ class AuthController extends Controller {
     return Response.json(result, result['statusCode']);
   }
 
-
   Future<Response> refreshToken(Request request) async {
     String? refreshToken =
         request.header('authorization')?.replaceFirst('Bearer ', '');
@@ -71,7 +70,6 @@ class AuthController extends Controller {
         .createTokenByRefreshToken(refreshToken, expiresIn: Duration(days: 30));
     return Response.json(token, 201);
   }
-
 }
 
 final AuthController authController = AuthController();
