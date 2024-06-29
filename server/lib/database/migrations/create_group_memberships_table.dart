@@ -6,7 +6,24 @@ class CreateGroupMembershipsTable extends Migration {
     super.up();
     await createTableNotExists('group_memberships', () {
       id();
-      timeStamps();
+      bigInt('user_id', unsigned: true);
+      bigInt('group_id', unsigned: true);
+      timeStamp('created_at', defaultValue: 'CURRENT_TIMESTAMP()');
+      timeStamp('updated_at', defaultValue: 'CURRENT_TIMESTAMP()');
+      timeStamp('deleted_at', nullable: true);
+
+      index(
+        ColumnIndex.indexKey,
+        'idx_group_memberships_group_id',
+        ['group_id'],
+      );
+      index(
+        ColumnIndex.indexKey,
+        'idx_group_memberships_user_id',
+        ['user_id'],
+      );
+      foreign('user_id', 'users', 'id');
+      foreign('group_id', 'groups', 'id');
     });
   }
 

@@ -9,13 +9,23 @@ class CreateUserTable extends Migration {
     // If you are using createTable, when you run migrate it will drop the table with all the data
     await createTableNotExists('users', () {
       id();
-      tinyText('username');
+      string('username', length: 50);
       string('email', length: 50);
       string('password');
       string('avatar', nullable: true);
       smallInt('verified', length: 1, defaultValue: 0);
-      timeStamps();
+      timeStamp(
+        'created_at',
+        nullable: true,
+        defaultValue: 'CURRENT_TIMESTAMP()',
+      );
+      timeStamp(
+        'updated_at',
+        nullable: true,
+        defaultValue: 'CURRENT_TIMESTAMP()',
+      );
 
+      index(ColumnIndex.unique, 'username', ['username']);
       index(ColumnIndex.unique, 'email', ['email']);
     });
   }

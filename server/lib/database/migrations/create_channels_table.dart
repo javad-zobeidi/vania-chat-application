@@ -6,7 +6,18 @@ class CreateChannelsTable extends Migration {
     super.up();
     await createTableNotExists('channels', () {
       id();
-      timeStamps();
+      bigInt('owner_id', unsigned: true);
+      string('channel_name', length: 100);
+      timeStamp('created_at', defaultValue: 'CURRENT_TIMESTAMP()');
+      timeStamp('updated_at', defaultValue: 'CURRENT_TIMESTAMP()');
+      timeStamp('deleted_at', nullable: true);
+
+      foreign('owner_id', 'users', 'id');
+      index(
+        ColumnIndex.indexKey,
+        'idx_channels_user_id',
+        ['owner_id'],
+      );
     });
   }
 
