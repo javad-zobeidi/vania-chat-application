@@ -1,32 +1,16 @@
+import 'package:server/app/http/repositories/chat/private_chat_repository.dart';
 import 'package:vania/vania.dart';
 
 class PrivateController extends Controller {
-  Future<Response> index() async {
-    return Response.json({'message': 'Hello World'});
-  }
+  Future<Response> newMessage(Request request) async {
+    request.merge({'user_id': Auth().id()});
 
-  Future<Response> create() async {
-    return Response.json({});
-  }
+    Map<String, dynamic> message = await PrivateChatRepository().newMessage(
+      request.all(),
+      request.file('media'),
+    );
 
-  Future<Response> store(Request request) async {
-    return Response.json({});
-  }
-
-  Future<Response> show(int id) async {
-    return Response.json({});
-  }
-
-  Future<Response> edit(int id) async {
-    return Response.json({});
-  }
-
-  Future<Response> update(Request request, int id) async {
-    return Response.json({});
-  }
-
-  Future<Response> destroy(int id) async {
-    return Response.json({});
+    return Response.json(message);
   }
 }
 
