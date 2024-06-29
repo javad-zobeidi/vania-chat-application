@@ -22,5 +22,16 @@ class ApiV1 extends Route {
       Router.patch('update', userController.update);
       Router.patch('avatar', userController.updateAvatar);
     }, prefix: '/user', middleware: [AuthenticateMiddleware()]);
+
+    Router.group(() {
+      Router.post('/private/new', privateController.newMessage);
+    }, prefix: '/message', middleware: [AuthenticateMiddleware()]);
+
+    Router.group(() {
+      Router.get('/all', conversationController.all);
+      Router.get('/private', conversationController.private);
+      Router.get('/group', conversationController.group);
+      Router.get('/channel', conversationController.channel);
+    }, prefix: '/conversations', middleware: [AuthenticateMiddleware()]);
   }
 }
